@@ -26,15 +26,17 @@ Retrieves all technical writer tasks with optional filtering by status, componen
 - Required Headers: Authorization header with API key.
 
 The following table details the parameters for this endpoint.
-| Parameter    | Required?  |  Description |
-| -----------  | ---------- | ----------- |
-| status       | Optional   | Filter tasks by status.    |
-| component    | Optional   | Filter tasks by component. |
-| updatedAfter | Optional   | Filter tasks updated after a specific date. |
+| Name         | Type   | Required  | Description |
+| -----------  | ------ | --------- | ----------- |
+| status       | string | Optional  | Filter tasks by status.    |
+| component    | string | Optional  | Filter tasks by component. |
+| updatedAfter | string | Optional  | Filter tasks updated after a specific date. |
 
 - Responses:
-  - 200: An array of tasks.
-  - 401: Unauthorized, API key missing or invalid.
+  - 200:
+    - An array of tasks. Refer to the `Tasks` schema for the format of the response.
+  - 401:
+    - Unauthorized, API key missing or invalid.
 
 And example of a successful response is:
 ```json
@@ -56,18 +58,17 @@ And example of a successful response is:
     "connected_tasks": []
   }
 ]
-
 ```
 
 ### Create a New Task
-To create a new technical writing task, use:
+This endpoint creates a new technical writing task.
 
-- HTTP Method and URI: **POST /task**
-- Required Headers: Authorization header with API key.
+- HTTP method and URI: **POST /task**
+- Required headers: Authorization header with API key.
 
-The request body uses the TaskInput schema. 
+The request body uses the `TaskInput` schema. 
 
-For example, the request body could be:
+An example request body is:
 ```
 {
   "title": "Write Release Notes",
@@ -79,8 +80,10 @@ For example, the request body could be:
 ```
 
 Responses:
-- 200: Task added successfully.
-- 401: Unauthorized, API key missing or invalid.
+- 200:
+  - Task added successfully.
+- 401:
+  - Unauthorized, API key missing or invalid.
 
 The following sections provide sample code in Python and JavaScript.
 
