@@ -15,14 +15,15 @@ Purpose
 - Base URL: https://api.techwriter.xyz
 
 ## Authentication
-The API uses API key authentication. Include the API key in the request header with the name Authorization.
+The API uses API key authentication. Include the API key in the request header with the name Authorization to authenticate themselves and access protected endpoints.
 
 ## Endpoints
 
-### Get existing tasks
-To retrieve a list of all technical writing tasks, use:
+### Get Existing Tasks
+Retrieves all technical writer tasks with optional filtering by status, component, or updated date.
 
-**GET /tasks**
+- HTTP Method and URI: **GET /tasks**
+- Required Headers: Authorization header with API key.
 
 The following table details the parameters for this endpoint.
 | Parameter    | Required?  |  Description |
@@ -31,20 +32,110 @@ The following table details the parameters for this endpoint.
 | component    | Optional   | Filter tasks by component. |
 | updatedAfter | Optional   | Filter tasks updated after a specific date. |
 
-Responses:
-- 200: An array of tasks.
-- 401: Unauthorized, API key missing or invalid.
+- Responses:
+  - 200: An array of tasks.
+  - 401: Unauthorized, API key missing or invalid.
 
-### Create a new task
+And example of a successful response is:
+```json
+[
+  {
+    "task_id": "123",
+    "title": "Write API Documentation",
+    "description": "Create documentation for the new API endpoints.",
+    "status": "IN_PROGRESS",
+    "component": "API_DOCS",
+    "connected_tasks": []
+  },
+  {
+    "task_id": "456",
+    "title": "Update SDK Documentation",
+    "description": "Update the SDK documentation with the latest changes.",
+    "status": "OPEN",
+    "component": "SDK_DOCS",
+    "connected_tasks": []
+  }
+]
+
+```
+
+### Create a New Task
 To create a new technical writing task, use:
 
-**POST /task**
+- HTTP Method and URI: **POST /task**
+- Required Headers: Authorization header with API key.
 
-Request body: TaskInput model.
+The request body uses the TaskInput schema. 
+
+For example, the request body could be:
+```
+{
+  "title": "Write Release Notes",
+  "description": "Draft release notes for version 2.0 of the product.",
+  "status": "OPEN",
+  "component": "HELP_CENTER",
+  "connected_tasks": []
+}
+```
 
 Responses:
 - 200: Task added successfully.
 - 401: Unauthorized, API key missing or invalid.
+
+The following sections provide sample code in Python and JavaScript.
+
+**Note:** In these examples, replace `YOUR_API_KEY` with your actual API key when making requests.
+
+#### Python Code Example
+```python
+import requests
+
+url = "https://api.techwriter.xyz/tasks"
+payload = {
+    "title": "Write Release Notes",
+    "description": "Draft release notes for version 2.0 of the product.",
+    "status": "OPEN",
+    "component": "HELP_CENTER",
+    "connected_tasks": []
+}
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.status_code)
+print(response.json())
+```
+
+#### JavaScript Code Example
+```javascript
+const fetch = require('node-fetch');
+
+const url = "https://api.techwriter.xyz/tasks";
+const payload = {
+    title: "Write Release Notes",
+    description: "Draft release notes for version 2.0 of the product.",
+    status: "OPEN",
+    component: "HELP_CENTER",
+    connected_tasks: []
+};
+const headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+};
+
+fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(payload)
+})
+.then(response => {
+    console.log(response.status);
+    return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+```
 
 ### Schemas
 The API has the following schemas along with a description of the purpose and structure of each schema:
@@ -87,27 +178,8 @@ The API has the following schemas along with a description of the purpose and st
 
 
 In addtion, there is a security schema:
-- ApiKeyAuth: API key authentication.
+1. **ApiKeyAuth**:
+   - Description: API key authentication.
 
-
-
-Example Usage
-Here's an example of how to interact with the API:
-
-```yaml
-openapi: 3.0.0
-info:
-  title: Technical Writer Tasks API
-  description: API for managing technical writer tasks.
-  version: 1.0.0
-servers:
-  - url: https://api.techwriter.xyz
-components:
-  - Security Scheme and Schemas defined here...
-paths:
-  /tasks:
-    get:
-      # GET /tasks operation details...
-    post:
-      # POST /task operation details...
-```
+# Best Practices
+Write good.
