@@ -111,13 +111,13 @@ fetch(url, {
 
 Retrieves all technical writer tasks with optional filtering by status, component, or updated date.
 
-The - Required Headers: Authorization header with API key.
+An authorization header with an API key is required with each request.
 
 The following table details the parameters for this endpoint.
 | Name         | Type   | Required  | Description |
 | -----------  | ------ | --------- | ----------- |
-| status       | string | Optional  | Filter tasks by status.    |
-| component    | string | Optional  | Filter tasks by component. |
+| status       | string | Optional  | Filter tasks by status. See the `StatusEnum` schema.   |
+| component    | string | Optional  | Filter tasks by component. See the `ComponentEnum` schema. |
 | updatedAfter | string | Optional  | Filter tasks updated after a specific date. |
 
 - Responses:
@@ -149,10 +149,11 @@ And example of a successful response is:
 ```
 
 ### Create a New Task
+**POST /task**
+
 This endpoint creates a new technical writing task.
 
-- HTTP method and URI: **POST /task**
-- Required headers: Authorization header with API key.
+An authorization header with an API key is required with each request.
 
 The request body uses the `TaskInput` schema. 
 
