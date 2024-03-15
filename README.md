@@ -133,7 +133,7 @@ The following table details the parameters for this endpoint.
   - 401:
     - Unauthorized, API key missing or invalid.
 
-And example of a successful response is:
+Here is an example of a successful response containing two tasks:
 ```json
 [
   {
@@ -165,7 +165,7 @@ An authorization header with an API key is required with each request.
 
 The request body uses the `TaskInput` schema. 
 
-An example request body is:
+Here is an example request body:
 ```
 {
   "title": "Write Release Notes",
