@@ -12,17 +12,106 @@ The API uses the base URL: `https://api.techwriter.xyz`
 ## Authentication
 The API uses API key authentication. 
 
-To create an API key, call the **POST /auth/token** endpoint and include your username and password in the request body.A succesful response contains the API key. 
+To create an API key, call the **POST /auth/token** endpoint and include your username and password in the request body. A succesful response contains the API key. 
 
-Include the API key in the request header with the name Authorization to authenticate and access protected endpoints. Note that for the Authorization value you must use the format of `Bearer YOUR_API_KEY`.
+Include the API key in the request header with the name *Authorization* to authenticate and access protected endpoints. Note that for the *Authorization* value you must use the format of `Bearer YOUR_API_KEY`.
 
-## Endpoints
+See the endpoint description for **/auth/token** below for more information.
+
+## Endpoint Descriptions
+
+### Generate an Authorization Key
+**POST /auth/token**
+
+Generates an authorization key based on a username and password.
+
+The request body is a JSON object with properties: username, password.
+
+An example request body is:
+```
+{
+  "username": "string",
+  "password": "string"
+}
+```
+
+Responses:
+- 200:
+  - Authorization key generated successfully.
+  - Content: JSON object with token property.
+- 401:
+  - Unauthorized. Invalid username or password.
+  
+**Note:** The generated token should be included in subsequent requests as an API Key.
+
+#### Python Code Example
+```python
+import requests
+
+# Define the endpoint URL
+url = 'https://api.techwriter.xyz/auth/token'
+
+# Define the request body with username and password
+data = {
+    'username': 'your_username',
+    'password': 'your_password'
+}
+
+# Make the POST request
+response = requests.post(url, json=data)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Extract the authorization token from the response
+    token = response.json()['token']
+    print("Authorization token:", token)
+else:
+    print("Failed to generate authorization token:", response.status_code)
+```
+
+#### JavaScript Code Example
+```
+const fetch = require('node-fetch');
+
+// Define the endpoint URL
+const url = 'https://api.techwriter.xyz/auth/token';
+
+// Define the request body with username and password
+const data = {
+    username: 'your_username',
+    password: 'your_password'
+};
+
+// Make the POST request
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => {
+    // Check if the request was successful
+    if (response.status === 200) {
+        // Extract the authorization token from the response
+        return response.json();
+    } else {
+        throw new Error('Failed to generate authorization token');
+    }
+})
+.then(data => {
+    const token = data.token;
+    console.log("Authorization token:", token);
+})
+.catch(error => console.error('Error:', error));
+```
 
 ### Get Existing Tasks
+**GET /tasks**
+
 Retrieves all technical writer tasks with optional filtering by status, component, or updated date.
 
-- HTTP Method and URI: **GET /tasks**
-- Required Headers: Authorization header with API key.
+The - Required Headers: Authorization header with API key.
 
 The following table details the parameters for this endpoint.
 | Name         | Type   | Required  | Description |
