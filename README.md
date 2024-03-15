@@ -12,7 +12,7 @@ The API uses the base URL: `https://api.techwriter.xyz`
 ## Authentication
 The API uses API key authentication. 
 
-To create an API key, call the **POST /auth/token** endpoint and include your username and password in the request body. A succesful response contains the API key. 
+To create an API key, call the **POST /auth/token** endpoint and include your username and password in the request body. A successful response contains the API key. 
 
 Include the API key in the request header with the name *Authorization* to authenticate and access protected endpoints. Note that for the *Authorization* value you must use the format of `Bearer YOUR_API_KEY`.
 
@@ -42,7 +42,7 @@ Responses:
 - 401:
   - Unauthorized. Invalid username or password.
   
-**Note:** The generated token should be included in subsequent requests as an API Key.
+**Note:** The generated token should be included in subsequent requests as an API key with the format `Bearer YOUR_API_KEY`.
 
 #### Python Code Example
 ```python
@@ -268,10 +268,8 @@ The API has the following schemas along with a description of the purpose and st
    - Values: API_DOCS, HELP_CENTER, SDK_DOCS, OAS_FILE.
 
 
-
-In addtion, there is a security schema:
-1. **ApiKeyAuth**:
-   - Description: API key authentication.
-
 # Best Practices
-Write good.
+The following are best practices for developing with the Technical Writing Tasks API.
+1. **Error codes**. When calling an endpoint, verify that the return code is checked for each request. Any return code other than 200 indicates an error.
+2. **API key security**. The username and password and corresponing authorization key should be kept secure. When possible, do not hardcode these values into your code. Verify that the username, password, and authorization key are not publically available.
+3. **Handling rate limits**. If you anticipate high usage of these endpoints, implement a handling rate limit corresponding to your server-side resources.
