@@ -1,21 +1,20 @@
-# Technical Writer Tasks API Developers Guide
+# Technical Writer Tasks Developers Guide
 
-This guide provides developers with instructions on how to interact with the Technical Writer Tasks API using YAML code defined in the OpenAPI Specification version 3.0.0.
-This developer's guide provides a comprehensive overview of the Technical Writer Tasks API, including authentication, available endpoints, parameters, responses, and example usage. Developers can use this guide to effectively integrate with and utilize the API for managing technical writing tasks.
+This developer's guide provides a comprehensive overview of the **Technical Writer Tasks API**, including authentication, available endpoints, parameters, responses, and example usage. Developers can use this guide to effectively integrate with and utilize the API for managing technical writing tasks.
 
 The Technical Writer Tasks API allows developers to manage tasks related to technical writing. This includes retrieving all tasks, filtering tasks based on various parameters, and adding new tasks.
 
-Intro
-Purpose
-
 ## API Information
-- Title: Technical Writer Tasks API
-- Description: API for managing technical writer tasks.
-- Version: 1.0.0
-- Base URL: https://api.techwriter.xyz
+The information in the following sections is relevant for the Technical Writer Tasks API version 1.0.0.
+
+The API uses the base URL: `https://api.techwriter.xyz`
 
 ## Authentication
-The API uses API key authentication. Include the API key in the request header with the name Authorization to authenticate themselves and access protected endpoints.
+The API uses API key authentication. 
+
+To create an API key, call the **POST /auth/token** endpoint and include your username and password in the request body.A succesful response contains the API key. 
+
+Include the API key in the request header with the name Authorization to authenticate and access protected endpoints. Note that for the Authorization value you must use the format of `Bearer YOUR_API_KEY`.
 
 ## Endpoints
 
