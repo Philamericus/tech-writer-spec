@@ -21,9 +21,9 @@ See the endpoint description for [/auth/token](#generate-an-authorization-key) b
 ## Endpoint Descriptions
 
 Endpoints are provided to:
-- POST /auth/token - [Generate an Authorization Key](#generate-an-authorization-key)
-- GET /tasks - [Get Existing Tasks](#get-existing-tasks)
-- POST /tasks - [Create a New Task](#create-a-new-task)
+- [Generate an Authorization Key](#generate-an-authorization-key) - POST /auth/token
+- [Get Existing Tasks](#get-existing-tasks) - GET /tasks
+- [Create a New Task](#create-a-new-task) - POST /tasks
 
 <a id="generate-an-authorization-key"></a>
 ### Generate an Authorization Key
