@@ -125,7 +125,7 @@ The following table details the parameters for this endpoint.
 | -----------  | ------ | --------- | ----------- |
 | status       | string | Optional  | Filter tasks by status. See the `StatusEnum` schema.   |
 | component    | string | Optional  | Filter tasks by component. See the `ComponentEnum` schema. |
-| updatedAfter | string | Optional  | Filter tasks updated after a specific date. |
+| updatedAfter | string | Optional  | Filter tasks updated after a specific date. The date format is `YYYY-MM-DD`. |
 
 - Responses:
   - 200:
