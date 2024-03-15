@@ -16,10 +16,16 @@ To create an API key, call the **POST /auth/token** endpoint and include your us
 
 Include the API key in the request header with the name *Authorization* to authenticate and access protected endpoints. Note that for the *Authorization* value you must use the format of `Bearer YOUR_API_KEY`.
 
-See the endpoint description for **/auth/token** below for more information.
+See the endpoint description for [/auth/token](#generate-an-authorization-key) below for more information.
 
 ## Endpoint Descriptions
 
+Endpoints are provided to:
+- POST /auth/token - [Generate an Authorization Key](#generate-an-authorization-key)
+- GET /tasks - [Get Existing Tasks](#get-existing-tasks)
+- POST /tasks - [Create a New Task](#create-a-new-task)
+
+<a id="generate-an-authorization-key"></a>
 ### Generate an Authorization Key
 **POST /auth/token**
 
@@ -106,6 +112,7 @@ fetch(url, {
 .catch(error => console.error('Error:', error));
 ```
 
+<a id="get-existing-tasks"></a>
 ### Get Existing Tasks
 **GET /tasks**
 
@@ -148,8 +155,9 @@ And example of a successful response is:
 ]
 ```
 
+<a id="create-a-new-task"></a>
 ### Create a New Task
-**POST /task**
+**POST /tasks**
 
 This endpoint creates a new technical writing task.
 
